@@ -40,6 +40,12 @@ namespace Acceptance.Pricing
         }
 
         [Fact]
+        public void EmptyReceiptReportsZeroCountDiscountAndTotal()
+        {
+            Assert.Equal("0 item(s), discount 0.00, total 0.00", PriceCalculator.Receipt(new List<LineItem>(), "LOYAL5"));
+        }
+
+        [Fact]
         public void InvalidLinesAreRejected()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => new LineItem("A", 0, 100));
